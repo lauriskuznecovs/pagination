@@ -1,6 +1,6 @@
 {
-  "name": "rc-pagination",
-  "version": "1.20.8",
+  "name": "accessible-rc-pagination",
+  "version": "1.20.13",
   "description": "pagination ui component for react",
   "keywords": [
     "react",
