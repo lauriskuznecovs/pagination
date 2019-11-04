@@ -409,10 +409,10 @@ class Pagination extends React.Component {
           <li
             title={props.showTitle ? locale.prev_page : null}
             onClick={this.prev}
-            tabIndex={this.hasPrev() && !this.focusOnListItem ? 0 : null}
+            tabIndex={this.hasPrev() && this.focusOnListItem ? 0 : null}
             onKeyPress={this.runIfEnterPrev}
             className={`${this.hasPrev() ? '' : `${prefixCls}-disabled`} ${prefixCls}-prev`}
-            aria-disabled={!this.hasPrev()}
+            aria-disabled={!this.hasPrev() && this.focusOnListItem ? true : null}
           >
             {props.itemRender(prevPage, 'prev', this.getItemIcon(props.prevIcon))}
           </li>
@@ -434,10 +434,10 @@ class Pagination extends React.Component {
           <li
             title={props.showTitle ? locale.next_page : null}
             onClick={this.next}
-            tabIndex={this.hasPrev() && !this.focusOnListItem ? 0 : null}
+            tabIndex={this.hasPrev() && this.focusOnListItem ? 0 : null}
             onKeyPress={this.runIfEnterNext}
             className={`${this.hasNext() ? '' : `${prefixCls}-disabled`} ${prefixCls}-next`}
-            aria-disabled={!this.hasNext()}
+            aria-disabled={!this.hasNext() && this.focusOnListItem ? true : null}
           >
             {props.itemRender(nextPage, 'next', this.getItemIcon(props.nextIcon))}
           </li>
@@ -490,7 +490,7 @@ class Pagination extends React.Component {
             title={props.showTitle ? prevItemTitle : null}
             key="prev"
             onClick={this.jumpPrev}
-            tabIndex={!this.focusOnListItem ? 0 : null}
+            tabIndex={this.focusOnListItem ? 0 : null}
             onKeyPress={this.runIfEnterJumpPrev}
             className={jumpPrevClassString}
           >
@@ -509,7 +509,7 @@ class Pagination extends React.Component {
           <li
             title={props.showTitle ? nextItemTitle : null}
             key="next"
-            tabIndex={!this.focusOnListItem ? 0 : null}
+            tabIndex={this.focusOnListItem ? 0 : null}
             onClick={this.jumpNext}
             onKeyPress={this.runIfEnterJumpNext}
             className={jumpNextClassString}
@@ -633,10 +633,10 @@ class Pagination extends React.Component {
         <li
           title={props.showTitle ? locale.prev_page : null}
           onClick={this.prev}
-          tabIndex={prevDisabled || this.focusOnListItem ? null : 0}
+          tabIndex={prevDisabled || !this.focusOnListItem ? null : 0}
           onKeyPress={this.runIfEnterPrev}
           className={`${!prevDisabled ? '' : `${prefixCls}-disabled`} ${prefixCls}-prev`}
-          aria-disabled={prevDisabled}
+          aria-disabled={prevDisabled && this.focusOnListItem ? true : null}
         >
           {props.itemRender(
             prevPage,
@@ -648,10 +648,10 @@ class Pagination extends React.Component {
         <li
           title={props.showTitle ? locale.next_page : null}
           onClick={this.next}
-          tabIndex={nextDisabled || this.focusOnListItem ? null : 0}
+          tabIndex={nextDisabled || !this.focusOnListItem ? null : 0}
           onKeyPress={this.runIfEnterNext}
           className={`${!nextDisabled ? '' : `${prefixCls}-disabled`} ${prefixCls}-next`}
-          aria-disabled={nextDisabled}
+          aria-disabled={nextDisabled && this.focusOnListItem ? true : null}
         >
           {props.itemRender(
             nextPage,
